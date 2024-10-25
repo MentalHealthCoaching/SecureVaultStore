@@ -3,15 +3,60 @@ type = sqlite/mysql/postgresql
 host = localhost
 port = 3306
 database = secure_vault
-user = db_user
-password = db_password
+user = db_user11
+password = db_password11
 
 [storage]
 max_file_size_mb = 50
 temp_dir = /tmp/secure_vault
-data_dir = /var/secure_vault/data
+data_dir = ./data
 
 [security]
 jwt_secret = your_secret_key
 token_validity_hours = 24
 min_password_length = 12
+
+[rate_limits]
+# Rate limits per IP (requests per minute)
+ip_rate_limit = 100
+
+# Rate limits per action (requests per minute)
+upload_rate_limit = 10
+delete_rate_limit = 20
+message_rate_limit = 30
+download_rate_limit = 50
+
+# Redis settings for rate limiting
+redis_host = localhost
+redis_port = 6379
+redis_db = 0
+
+[security]
+# Maximum file size in MB
+max_file_size_mb = 50
+
+# Required encryption strength
+min_aes_key_length = 256
+min_rsa_key_length = 4096
+
+[passwords]
+# Minimum password length
+min_password_length = 6
+
+# Maximum password length
+max_password_length = 64
+
+# Minimum zxcvbn strength score (0-4)
+min_password_strength = 3
+
+# Maximum number of special characters allowed
+max_special_chars = 3
+
+# Whether to check for common passwords
+check_common_passwords = true
+
+# Password expiry in days (0 = never)
+password_expiry_days = 0
+
+# Number of previous passwords to remember (password history)
+password_history = 5
