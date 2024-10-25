@@ -1,0 +1,17 @@
+[database]
+type = sqlite/mysql/postgresql
+host = localhost
+port = 3306
+database = secure_vault
+user = db_user
+password = db_password
+
+[storage]
+max_file_size_mb = 50
+temp_dir = /tmp/secure_vault
+data_dir = /var/secure_vault/data
+
+[security]
+jwt_secret = your_secret_key
+token_validity_hours = 24
+min_password_length = 12
